@@ -77,3 +77,7 @@ D:\WorkSpace\C#\ASP.NET Web Application (.NET Framework)\WebLagoonBookStore\WebL
 D:\WorkSpace\C#\ASP.NET Web Application (.NET Framework)\WebLagoonBookStore\WebLagoonBookStore\obj\Debug\WebLagoonBookStore.csproj.CopyComplete
 D:\WorkSpace\C#\ASP.NET Web Application (.NET Framework)\WebLagoonBookStore\WebLagoonBookStore\obj\Debug\WebLagoonBookStore.dll
 D:\WorkSpace\C#\ASP.NET Web Application (.NET Framework)\WebLagoonBookStore\WebLagoonBookStore\obj\Debug\WebLagoonBookStore.pdb
+D:\WorkSpace\C#\ASP.NET Web Application (.NET Framework)\WebLagoonBookStore\WebLagoonBookStore\bin\EntityFramework.dll
+D:\WorkSpace\C#\ASP.NET Web Application (.NET Framework)\WebLagoonBookStore\WebLagoonBookStore\bin\EntityFramework.SqlServer.dll
+D:\WorkSpace\C#\ASP.NET Web Application (.NET Framework)\WebLagoonBookStore\WebLagoonBookStore\bin\EntityFramework.xml
+D:\WorkSpace\C#\ASP.NET Web Application (.NET Framework)\WebLagoonBookStore\WebLagoonBookStore\bin\EntityFramework.SqlServer.xml
