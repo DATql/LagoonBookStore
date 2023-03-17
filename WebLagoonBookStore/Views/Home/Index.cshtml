@@ -171,208 +171,46 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="filter__controls">
-                        <li class="active" data-filter="*">Best Sellers</li>
-                        <li data-filter=".new-arrivals">New Arrivals</li>
-                        <li data-filter=".hot-sales">Hot Sales</li>
+                        <li>Best Seller</li>
                     </ul>
                 </div>
             </div>
             <div class="row product__filter">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                            <img src="~/assets/img/Books/book_1.png" alt="">
-                            <span class="label">New</span>
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="~/assets/img/icon/heart.png" alt=""><span>Yêu Thích</span><span></span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/compare.png" alt=""><span>So sánh</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/search.png" alt=""><span>Tìm Kiếm</span><span></span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>C++ Programming</h6>
-                            <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>150.000 VND</h5>
-                        </div>
+                @model IEnumerable<dynamic>
+                @foreach (var book in Model)
+                { <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                <div class="product__item">
+
+                    <div class="product__item__pic set-bg">
+                        <img src="~/assets/img/Books/book_1.png" alt="">
+                        <span class="label">New</span>
+                        <ul class="product__hover">
+                            <li><a href="#"><img src="~/assets/img/icon/heart.png" alt=""><span>Yêu Thích</span><span></span></a></li>
+                            <li><a href="#"><img src="~/assets/img/icon/compare.png" alt=""><span>So sánh</span></a></li>
+                            <li><a href="#"><img src="~/assets/img/icon/search.png" alt=""><span>Tìm Kiếm</span><span></span></a></li>
+                        </ul>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                            <img src="~/assets/img/Books/book_2.png" alt="">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="~/assets/img/icon/heart.png" alt=""><span>Yêu Thích</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/compare.png" alt=""><span>So sánh</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/search.png" alt=""><span>Tìm Kiếm</span></a></li>
-                            </ul>
+                    <form method="post" action="@Url.Action("AddToCart", "Home")">
+                        <input type="hidden" name="id" value="@book.id" />
+                        <input type="number" name="quantity" value="1" />
+                        <button type="submit">+ Thêm vào giỏ hàng</button>
+                    </form>
+                    <div class="product__item__text">
+                        <h6>@book.title</h6>
+                        <div class="rating">
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
                         </div>
-                        <div class="product__item__text">
-                            <h6>C++ High Performance</h6>
-                            <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>247.000 VND</h5>
-                        </div>
+                        <h5>@book.price</h5>
                     </div>
+
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg">
-                            <img src="~/assets/img/Books/book_3.png" alt="">
-                            <span class="label">Sale</span>
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="~/assets/img/icon/heart.png" alt=""><span>Yêu Thích</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/compare.png" alt=""><span>So sánh</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/search.png" alt=""><span>Tìm Kiếm</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Tiếng Rền Của Núi</h6>
-                            <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>145.000 VND</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                            <img src="~/assets/img/Books/book_4.png" alt="">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="~/assets/img/icon/heart.png" alt=""><span>Yêu Thích</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/compare.png" alt=""><span>So sánh</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/search.png" alt=""><span>Tìm Kiếm</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Độc Giả Thứ 7</h6>
-                            <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>110.000 VND</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                            <img src="~/assets/img/Books/book_5.png" alt="">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="~/assets/img/icon/heart.png" alt=""><span>Yêu Thích</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/compare.png" alt=""><span>So sánh</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/search.png" alt=""><span>Tìm Kiếm</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Tắt Đèn</h6>
-                            <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>60.000 VND</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg">
-                            <img src="~/assets/img/Books/book_6.png" alt="">
-                            <span class="label">Sale</span>
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="~/assets/img/icon/heart.png" alt=""><span>Yêu Thích</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/compare.png" alt=""><span>So sánh</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/search.png" alt=""><span>Tìm Kiếm</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Bay Trên Tổ Chim Cúc Cu</h6>
-                            <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>46.000 VND</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                            <img src="~/assets/img/Books/book_7.png" alt="">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="~/assets/img/icon/heart.png" alt=""><span>Yêu Thích</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/compare.png" alt=""><span>So sánh</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/search.png" alt=""><span>Tìm Kiếm</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Tấm Cám</h6>
-                            <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>32.000 VND</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg">
-                            <img src="~/assets/img/Books/book_8.png" alt="">
-                            <ul class="product__hover">
-                                <li><a href="#"><img src="~/assets/img/icon/heart.png" alt=""><span>Yêu Thích</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/compare.png" alt=""><span>So sánh</span></a></li>
-                                <li><a href="#"><img src="~/assets/img/icon/search.png" alt=""><span>Tìm Kiếm</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Lớp Học Mật Ngữ - Tập 10</h6>
-                            <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <h5>26.000 VND</h5>
-                        </div>
-                    </div>
-                </div>
+            </div>}
+            
+
             </div>
         </div>
     </section>

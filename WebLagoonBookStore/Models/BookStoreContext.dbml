@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLNhaSachFattyAndThinny" Class="BookStoreContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Book" Member="Books">
+    <Type Name="Book">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="release_year" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="publisher" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="author" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="categoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Book_Book_Tag" Member="Book_Tags" ThisKey="id" OtherKey="bookID" Type="Book_Tag" />
+      <Association Name="Book_Book_Tag1" Member="Book_Tags1" ThisKey="id" OtherKey="bookID" Type="Book_Tag" />
+      <Association Name="Book_ReceiptDetail" Member="ReceiptDetails" ThisKey="id" OtherKey="bookID" Type="ReceiptDetail" />
+      <Association Name="Category_Book" Member="Category" ThisKey="categoryID" OtherKey="id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tag" Member="Tags">
+    <Type Name="Tag">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tag" Member="tag1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Tag_Book_Tag" Member="Book_Tags" ThisKey="id" OtherKey="tagID" Type="Book_Tag" />
+      <Association Name="Tag_Book_Tag1" Member="Book_Tags1" ThisKey="id" OtherKey="tagID" Type="Book_Tag" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Book_Tag" Member="Book_Tags">
+    <Type Name="Book_Tag">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="bookID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tagID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Book_Book_Tag" Member="Book" ThisKey="bookID" OtherKey="id" Type="Book" IsForeignKey="true" />
+      <Association Name="Tag_Book_Tag" Member="Tag" ThisKey="tagID" OtherKey="id" Type="Tag" IsForeignKey="true" />
+      <Association Name="Book_Book_Tag1" Member="Book1" ThisKey="bookID" OtherKey="id" Type="Book" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Tag_Book_Tag1" Member="Tag1" ThisKey="tagID" OtherKey="id" Type="Tag" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="category" Member="category1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Category_Book" Member="Books" ThisKey="id" OtherKey="categoryID" Type="Book" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="avatar" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="phone_number" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="created_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="is_active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_OnlineOrder" Member="OnlineOrders" ThisKey="id" OtherKey="customerID" Type="OnlineOrder" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Discount" Member="Discounts">
+    <Type Name="Discount">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="discount_code" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="is_active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Discount_ReceiptDetail" Member="ReceiptDetails" ThisKey="id" OtherKey="discountID" Type="ReceiptDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OnlineOrder" Member="OnlineOrders">
+    <Type Name="OnlineOrder">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="is_ordered" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="customerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="receiptID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Customer_OnlineOrder" Member="Customer" ThisKey="customerID" OtherKey="id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Receipt_OnlineOrder" Member="Receipt" ThisKey="receiptID" OtherKey="id" Type="Receipt" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Receipt" Member="Receipts">
+    <Type Name="Receipt">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="create_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="staffID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Receipt_OnlineOrder" Member="OnlineOrders" ThisKey="id" OtherKey="receiptID" Type="OnlineOrder" />
+      <Association Name="Receipt_ReceiptDetail" Member="ReceiptDetails" ThisKey="id" OtherKey="receiptID" Type="ReceiptDetail" />
+      <Association Name="Staff_Receipt" Member="Staff" ThisKey="staffID" OtherKey="id" Type="Staff" IsForeignKey="true" />
+      <Association Name="Staff_Receipt1" Member="Staff1" ThisKey="staffID" OtherKey="id" Type="Staff" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReceiptDetail" Member="ReceiptDetails">
+    <Type Name="ReceiptDetail">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="receiptID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bookID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="discountID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Book_ReceiptDetail" Member="Book" ThisKey="bookID" OtherKey="id" Type="Book" IsForeignKey="true" />
+      <Association Name="Discount_ReceiptDetail" Member="Discount" ThisKey="discountID" OtherKey="id" Type="Discount" IsForeignKey="true" />
+      <Association Name="Receipt_ReceiptDetail" Member="Receipt" ThisKey="receiptID" OtherKey="id" Type="Receipt" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Staff" Member="Staffs">
+    <Type Name="Staff">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="role" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="first_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="last_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="phone_number" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="join_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="salary" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Staff_Receipt" Member="Receipts" ThisKey="id" OtherKey="staffID" Type="Receipt" />
+      <Association Name="Staff_Receipt1" Member="Receipts1" ThisKey="id" OtherKey="staffID" Type="Receipt" />
+    </Type>
+  </Table>
+</Database>
