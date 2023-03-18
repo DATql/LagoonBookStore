@@ -1,19 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLNhaSachFattyAndThinny" Class="BookStoreContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.Book" Member="Books">
     <Type Name="Book">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="release_year" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="release_year" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="image" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="publisher" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="author" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="categoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Book_Book_Tag" Member="Book_Tags" ThisKey="id" OtherKey="bookID" Type="Book_Tag" />
-      <Association Name="Book_Book_Tag1" Member="Book_Tags1" ThisKey="id" OtherKey="bookID" Type="Book_Tag" />
-      <Association Name="Book_ReceiptDetail" Member="ReceiptDetails" ThisKey="id" OtherKey="bookID" Type="ReceiptDetail" />
       <Association Name="Category_Book" Member="Category" ThisKey="categoryID" OtherKey="id" Type="Category" IsForeignKey="true" />
     </Type>
   </Table>
@@ -30,9 +27,7 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="bookID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="tagID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Book_Book_Tag" Member="Book" ThisKey="bookID" OtherKey="id" Type="Book" IsForeignKey="true" />
       <Association Name="Tag_Book_Tag" Member="Tag" ThisKey="tagID" OtherKey="id" Type="Tag" IsForeignKey="true" />
-      <Association Name="Book_Book_Tag1" Member="Book1" ThisKey="bookID" OtherKey="id" Type="Book" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Tag_Book_Tag1" Member="Tag1" ThisKey="tagID" OtherKey="id" Type="Tag" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
@@ -93,7 +88,7 @@
       <Column Name="receiptID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="bookID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="discountID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Book_ReceiptDetail" Member="Book" ThisKey="bookID" OtherKey="id" Type="Book" IsForeignKey="true" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Discount_ReceiptDetail" Member="Discount" ThisKey="discountID" OtherKey="id" Type="Discount" IsForeignKey="true" />
       <Association Name="Receipt_ReceiptDetail" Member="Receipt" ThisKey="receiptID" OtherKey="id" Type="Receipt" IsForeignKey="true" />
     </Type>

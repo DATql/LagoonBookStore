@@ -73,8 +73,12 @@ namespace WebLagoonBookStore.Models
 		{
 			OnCreated();
 		}
-		
-		public BookStoreContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+
+        public BookStoreContextDataContext() : base("Data Source=LAPTOP-HBNFDDUE\\DAT4;Initial Catalog=QLNhaSachFattyAndThinny;Integrated Security=True;Persist Security Info=True", mappingSource)
+        {
+            OnCreated();
+        }
+        public BookStoreContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -85,13 +89,8 @@ namespace WebLagoonBookStore.Models
 		{
 			OnCreated();
 		}
-
-		public BookStoreContextDataContext():base( "Data Source=LAPTOP-HBNFDDUE\\DAT4;Initial Catalog=QLNhaSachFattyAndThinny;Integrated Security=True;Persist Security Info=True", mappingSource)
-		{
-			OnCreated();
-		}
-
-        public System.Data.Linq.Table<Book> Books
+		
+		public System.Data.Linq.Table<Book> Books
 		{
 			get
 			{
@@ -184,7 +183,7 @@ namespace WebLagoonBookStore.Models
 		
 		private string _description;
 		
-		private System.Nullable<System.DateTime> _release_year;
+		private System.Nullable<int> _release_year;
 		
 		private string _image;
 		
@@ -198,12 +197,6 @@ namespace WebLagoonBookStore.Models
 		
 		private System.Nullable<int> _categoryID;
 		
-		private EntitySet<Book_Tag> _Book_Tags;
-		
-		private EntitySet<Book_Tag> _Book_Tags1;
-		
-		private EntitySet<ReceiptDetail> _ReceiptDetails;
-		
 		private EntityRef<Category> _Category;
 		
     #region Extensibility Method Definitions
@@ -216,7 +209,7 @@ namespace WebLagoonBookStore.Models
     partial void OntitleChanged();
     partial void OndescriptionChanging(string value);
     partial void OndescriptionChanged();
-    partial void Onrelease_yearChanging(System.Nullable<System.DateTime> value);
+    partial void Onrelease_yearChanging(System.Nullable<int> value);
     partial void Onrelease_yearChanged();
     partial void OnimageChanging(string value);
     partial void OnimageChanged();
@@ -234,14 +227,11 @@ namespace WebLagoonBookStore.Models
 		
 		public Book()
 		{
-			this._Book_Tags = new EntitySet<Book_Tag>(new Action<Book_Tag>(this.attach_Book_Tags), new Action<Book_Tag>(this.detach_Book_Tags));
-			this._Book_Tags1 = new EntitySet<Book_Tag>(new Action<Book_Tag>(this.attach_Book_Tags1), new Action<Book_Tag>(this.detach_Book_Tags1));
-			this._ReceiptDetails = new EntitySet<ReceiptDetail>(new Action<ReceiptDetail>(this.attach_ReceiptDetails), new Action<ReceiptDetail>(this.detach_ReceiptDetails));
 			this._Category = default(EntityRef<Category>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int id
 		{
 			get
@@ -281,7 +271,7 @@ namespace WebLagoonBookStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NText", UpdateCheck=UpdateCheck.Never)]
 		public string description
 		{
 			get
@@ -301,8 +291,8 @@ namespace WebLagoonBookStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_release_year", DbType="Date")]
-		public System.Nullable<System.DateTime> release_year
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_release_year", DbType="Int")]
+		public System.Nullable<int> release_year
 		{
 			get
 			{
@@ -445,45 +435,6 @@ namespace WebLagoonBookStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Book_Tag", Storage="_Book_Tags", ThisKey="id", OtherKey="bookID")]
-		public EntitySet<Book_Tag> Book_Tags
-		{
-			get
-			{
-				return this._Book_Tags;
-			}
-			set
-			{
-				this._Book_Tags.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Book_Tag1", Storage="_Book_Tags1", ThisKey="id", OtherKey="bookID")]
-		public EntitySet<Book_Tag> Book_Tags1
-		{
-			get
-			{
-				return this._Book_Tags1;
-			}
-			set
-			{
-				this._Book_Tags1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_ReceiptDetail", Storage="_ReceiptDetails", ThisKey="id", OtherKey="bookID")]
-		public EntitySet<ReceiptDetail> ReceiptDetails
-		{
-			get
-			{
-				return this._ReceiptDetails;
-			}
-			set
-			{
-				this._ReceiptDetails.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Book", Storage="_Category", ThisKey="categoryID", OtherKey="id", IsForeignKey=true)]
 		public Category Category
 		{
@@ -536,42 +487,6 @@ namespace WebLagoonBookStore.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Book_Tags(Book_Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = this;
-		}
-		
-		private void detach_Book_Tags(Book_Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = null;
-		}
-		
-		private void attach_Book_Tags1(Book_Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book1 = this;
-		}
-		
-		private void detach_Book_Tags1(Book_Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book1 = null;
-		}
-		
-		private void attach_ReceiptDetails(ReceiptDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = this;
-		}
-		
-		private void detach_ReceiptDetails(ReceiptDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = null;
 		}
 	}
 	
@@ -729,11 +644,7 @@ namespace WebLagoonBookStore.Models
 		
 		private System.Nullable<int> _tagID;
 		
-		private EntityRef<Book> _Book;
-		
 		private EntityRef<Tag> _Tag;
-		
-		private EntityRef<Book> _Book1;
 		
 		private EntityRef<Tag> _Tag1;
 		
@@ -751,9 +662,7 @@ namespace WebLagoonBookStore.Models
 		
 		public Book_Tag()
 		{
-			this._Book = default(EntityRef<Book>);
 			this._Tag = default(EntityRef<Tag>);
-			this._Book1 = default(EntityRef<Book>);
 			this._Tag1 = default(EntityRef<Tag>);
 			OnCreated();
 		}
@@ -789,10 +698,6 @@ namespace WebLagoonBookStore.Models
 			{
 				if ((this._bookID != value))
 				{
-					if ((this._Book.HasLoadedOrAssignedValue || this._Book1.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnbookIDChanging(value);
 					this.SendPropertyChanging();
 					this._bookID = value;
@@ -822,40 +727,6 @@ namespace WebLagoonBookStore.Models
 					this._tagID = value;
 					this.SendPropertyChanged("tagID");
 					this.OntagIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Book_Tag", Storage="_Book", ThisKey="bookID", OtherKey="id", IsForeignKey=true)]
-		public Book Book
-		{
-			get
-			{
-				return this._Book.Entity;
-			}
-			set
-			{
-				Book previousValue = this._Book.Entity;
-				if (((previousValue != value) 
-							|| (this._Book.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Book.Entity = null;
-						previousValue.Book_Tags.Remove(this);
-					}
-					this._Book.Entity = value;
-					if ((value != null))
-					{
-						value.Book_Tags.Add(this);
-						this._bookID = value.id;
-					}
-					else
-					{
-						this._bookID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Book");
 				}
 			}
 		}
@@ -890,40 +761,6 @@ namespace WebLagoonBookStore.Models
 						this._tagID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Tag");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_Book_Tag1", Storage="_Book1", ThisKey="bookID", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Book Book1
-		{
-			get
-			{
-				return this._Book1.Entity;
-			}
-			set
-			{
-				Book previousValue = this._Book1.Entity;
-				if (((previousValue != value) 
-							|| (this._Book1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Book1.Entity = null;
-						previousValue.Book_Tags1.Remove(this);
-					}
-					this._Book1.Entity = value;
-					if ((value != null))
-					{
-						value.Book_Tags1.Add(this);
-						this._bookID = value.id;
-					}
-					else
-					{
-						this._bookID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Book1");
 				}
 			}
 		}
@@ -2015,7 +1852,7 @@ namespace WebLagoonBookStore.Models
 		
 		private System.Nullable<int> _discountID;
 		
-		private EntityRef<Book> _Book;
+		private System.Nullable<int> _quantity;
 		
 		private EntityRef<Discount> _Discount;
 		
@@ -2033,11 +1870,12 @@ namespace WebLagoonBookStore.Models
     partial void OnbookIDChanged();
     partial void OndiscountIDChanging(System.Nullable<int> value);
     partial void OndiscountIDChanged();
+    partial void OnquantityChanging(System.Nullable<int> value);
+    partial void OnquantityChanged();
     #endregion
 		
 		public ReceiptDetail()
 		{
-			this._Book = default(EntityRef<Book>);
 			this._Discount = default(EntityRef<Discount>);
 			this._Receipt = default(EntityRef<Receipt>);
 			OnCreated();
@@ -2098,10 +1936,6 @@ namespace WebLagoonBookStore.Models
 			{
 				if ((this._bookID != value))
 				{
-					if (this._Book.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnbookIDChanging(value);
 					this.SendPropertyChanging();
 					this._bookID = value;
@@ -2135,36 +1969,22 @@ namespace WebLagoonBookStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_ReceiptDetail", Storage="_Book", ThisKey="bookID", OtherKey="id", IsForeignKey=true)]
-		public Book Book
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int")]
+		public System.Nullable<int> quantity
 		{
 			get
 			{
-				return this._Book.Entity;
+				return this._quantity;
 			}
 			set
 			{
-				Book previousValue = this._Book.Entity;
-				if (((previousValue != value) 
-							|| (this._Book.HasLoadedOrAssignedValue == false)))
+				if ((this._quantity != value))
 				{
+					this.OnquantityChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Book.Entity = null;
-						previousValue.ReceiptDetails.Remove(this);
-					}
-					this._Book.Entity = value;
-					if ((value != null))
-					{
-						value.ReceiptDetails.Add(this);
-						this._bookID = value.id;
-					}
-					else
-					{
-						this._bookID = default(int);
-					}
-					this.SendPropertyChanged("Book");
+					this._quantity = value;
+					this.SendPropertyChanged("quantity");
+					this.OnquantityChanged();
 				}
 			}
 		}
