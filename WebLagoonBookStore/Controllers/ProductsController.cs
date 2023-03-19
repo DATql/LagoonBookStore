@@ -13,10 +13,15 @@ namespace WebLagoonBookStore.Controllers
 
         public ActionResult Index()
         {
-            var result = from b in db.Books
-                         select b;
-             
-            return View(result);
+            var books = (from book in db.Books
+                         select book).ToList();
+           
+
+            var categories = (from c in db.Categories
+                          select c).ToList();
+            
+            var model = new Tuple<List<Book>, List<Category>>(books, categories);
+            return View((books,categories));
         }
     }
 }
