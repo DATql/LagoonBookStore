@@ -4,18 +4,128 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="zxx">
-
-<head>
- 
-</head>
-
-<body>
-
-   
-</body>
-
-</html>
-
-
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sản Phẩm</th>
+                                <th>Số Lượng</th>
+                                <th>Đơn Giá</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="product__cart__item">
+                                    <div class="product__cart__item__pic">
+                                        <img src="~/assets/img/Books/book_1_shoppingcart.png" alt="">
+                                    </div>
+                                    <div class="product__cart__item__text">
+                                        <h6>C++ Programming</h6>
+                                        <h5>150.000 VND</h5>
+                                    </div>
+                                </td>
+                                <td class="quantity__item">
+                                    <div class="quantity">
+                                        <div class="pro-qty-2">
+                                            <input type="text" value="1">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="cart__price">150.000 VND</td>
+                                <td class="cart__close"><i class="fa fa-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="product__cart__item">
+                                    <div class="product__cart__item__pic">
+                                        <img src="~/assets/img/Books/book_4_shoppingcart.png" alt="">
+                                    </div>
+                                    <div class="product__cart__item__text">
+                                        <h6>Độc Giả Thứ 7</h6>
+                                        <h5>110.000 VND</h5>
+                                    </div>
+                                </td>
+                                <td class="quantity__item">
+                                    <div class="quantity">
+                                        <div class="pro-qty-2">
+                                            <input type="text" value="1">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="cart__price">110.000 VND</td>
+                                <td class="cart__close"><i class="fa fa-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="product__cart__item">
+                                    <div class="product__cart__item__pic">
+                                        <img src="~/assets/img/Books/book_5_shoppingcart.png" alt="">
+                                    </div>
+                                    <div class="product__cart__item__text">
+                                        <h6>Tắt Đèn</h6>
+                                        <h5>60.000 VND</h5>
+                                    </div>
+                                </td>
+                                <td class="quantity__item">
+                                    <div class="quantity">
+                                        <div class="pro-qty-2">
+                                            <input type="text" value="1">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="cart__price">60.000 VND</td>
+                                <td class="cart__close"><i class="fa fa-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="product__cart__item">
+                                    <div class="product__cart__item__pic">
+                                        <img src="~/assets/img/Books/book_8_shoppingcart.png" alt="">
+                                    </div>
+                                    <div class="product__cart__item__text">
+                                        <h6>Lớp Học Mật Ngữ - Tập 10</h6>
+                                        <h5>26.000 VND</h5>
+                                    </div>
+                                </td>
+                                <td class="quantity__item">
+                                    <div class="quantity">
+                                        <div class="pro-qty-2">
+                                            <input type="text" value="1">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="cart__price">26.000 VND</td>
+                                <td class="cart__close"><i class="fa fa-close"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                            <a href="~/Products/Index">Tiếp Tục Mua Hàng</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn update__btn">
+                            <a href="#"><i class="fa fa-spinner"></i>Thanh Toán</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="cart__total">
+                    <h6>Thanh Toán Giỏ Hàng</h6>
+                    <ul>
+                        <li>Subtotal <span>$ 169.50</span></li>
+                        <li>Total <span>$ 169.50</span></li>
+                    </ul>
+                    <a href="#" class="primary-btn">Proceed to checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
