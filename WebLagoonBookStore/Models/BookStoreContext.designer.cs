@@ -61,6 +61,10 @@ namespace WebLagoonBookStore.Models
     partial void UpdateStaff(Staff instance);
     partial void DeleteStaff(Staff instance);
     #endregion
+		public BookStoreContextDataContext():base("Data Source=HIEUMINHSKY\\MSSQLSERVER01;Initial Catalog=QLNhaSachFattyAndThinny;Integrated Security=True", mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public BookStoreContextDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -73,12 +77,8 @@ namespace WebLagoonBookStore.Models
 		{
 			OnCreated();
 		}
-
-        public BookStoreContextDataContext() : base("Data Source=LAPTOP-HBNFDDUE\\DAT4;Initial Catalog=QLNhaSachFattyAndThinny;Integrated Security=True;Persist Security Info=True", mappingSource)
-        {
-            OnCreated();
-        }
-        public BookStoreContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		
+		public BookStoreContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
